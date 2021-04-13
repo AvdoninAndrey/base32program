@@ -8,6 +8,7 @@ private:
     const string ex = "exit", spravka = "help";
     string  mode, NeMode;
 public:
+
     void Select()
     {
         bool flag, isTrue = true;
@@ -23,7 +24,8 @@ public:
                 getline(cin, s);
                 Encoder b32;
                 cout << "Encoding data: " << s << endl;
-                Result::PrintResultEncod(b32.base32Encode(s));
+                cout <<"Encoded string: ";
+                Result<Encoder>::PrintResult(b32.base32Encode(s));
             }
             if (mode == dec) {
                 cout << "Введите строку для декодирования:";
@@ -32,7 +34,8 @@ public:
                 if(ExceptionAlphabet::checking_the_alphabetB32(s)) {
                     Decoder b32;
                     cout << "Data for decoding: " << s << endl;
-                    Result::PrintResultDecod(b32.base32Decode(s));
+                    cout <<"Decoded string: ";
+                    Result<Decoder>::PrintResult(b32.base32Decode(s));
                 }
             }
             if (mode == ex) {
