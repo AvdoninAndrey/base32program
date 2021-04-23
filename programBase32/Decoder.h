@@ -1,23 +1,19 @@
 #pragma once
-#include "Alphabets.h"
+#include "Alphabet.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
-class Decoder: public Alphabets
+class Decoder: protected Alphabets
 {
 private:
     const int b32key = 5; // ключ Base32
-    char * stroka;
-    int len;
+    string stroka;
 public:
     char& operator[] (const int index); // перегрузка []
-
-    Decoder base32Decode(string &data); // декодирование
-
-    Decoder(const int size);  // конструктор с параметром
-
-    Decoder(); // конструктор по умолчанию
-
-    ~Decoder(); // деструктор
+    Decoder () = default;
+    ~Decoder () = default;
+    Decoder(const char * str);
+    Decoder base32Decode(string data); // декодирование
+    friend bool operator ==(const Decoder & left, const Decoder & right);
     friend ostream & operator<<(ostream &out, const Decoder &a); // перегрузка <<
 };

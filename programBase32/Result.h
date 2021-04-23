@@ -1,13 +1,11 @@
 #pragma once
-#include "Encoder.h"
-#include "Decoder.h"
 #include <iostream>
 template <typename T>
 class Result
 {
 
 public:
- static void PrintResult (T result);
+    static void PrintResult (T result);
 };
 
 template <typename T>

@@ -1,28 +1,35 @@
 #include "Decoder.h"
-Decoder::Decoder(): stroka(new char[1] {}), len(0) {}; // конструкто по умолчанию
-Decoder::~Decoder() // Деструктор
-{
-    delete[] stroka;
-}
+
 ostream & operator<<(ostream &out, const Decoder &a) // перегрузка <<
 {
     out << a.stroka;
     return out;
 }
+Decoder::Decoder(const char * str)
+{
+    string result;
+    int end;
+    for (end = 0; str[end] != '\0'; end++); // узнаём длину
+    result.resize(end+1); // выделяем память
+    for (int i=0; i<=end; i++) {
+        result[i] = str[i];
+        this->stroka[i] = result[i];
+    }
+}
+bool operator == (const Decoder & left, const Decoder & right)
+{
+    if (left.stroka == right.stroka)
+        return true;
+    return false;
+}
+
 
 char& Decoder::operator[] (const int index) // перегрузка []
 {
     return stroka[index];
 }
 
-Decoder::Decoder(const int size) // конструктор с параметром
-{
-    this->len=size;
-    this->stroka = new char [len+1];
-}
-
-
-Decoder Decoder::base32Decode(string &data) // Декодирование
+Decoder Decoder::base32Decode(string data) // Декодирование
 {
     vector<unsigned char> Decode;
 
@@ -50,10 +57,10 @@ Decoder Decoder::base32Decode(string &data) // Декодирование
     }
 
     const int dlina = Decode.size();
-    Decoder resultDecode(dlina);
+    Decoder resultDecode;
     for (auto i = 0; i<dlina; i++) {
-        resultDecode[i] = Decode.at(i);
+        resultDecode.stroka[i] = Decode.at(i);
     }
-    resultDecode[dlina] = '\0';
+    resultDecode.stroka[dlina] = '\0';
     return resultDecode;
 }

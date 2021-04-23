@@ -1,11 +1,5 @@
 #include "Encoder.h"
 
-Encoder::Encoder(): stroka(new char[1] {}), len(0) {}; // конструктор по умолчанию
-
-Encoder::~Encoder() // деструктор
-{
-    delete[] stroka;
-}
 ostream & operator<<(ostream &out, const Encoder &a) // перегрузка <<
 {
     out << a.stroka;
@@ -17,10 +11,23 @@ char& Encoder::operator[] (const int index) // перегрузка []
     return stroka[index];
 }
 
-Encoder::Encoder(const int size) // конструктор с параметром
+Encoder::Encoder(const char * str)
 {
-    this->len=size;
-    this->stroka = new char [len+1];
+    string result;
+    int end;
+    for (end = 0; str[end] != '\0'; end++); // узнаём длину
+    result.resize(end+1); // выделяем память
+    for (int i=0; i<=end; i++) {
+        result[i] = str[i];
+        this->stroka[i] = result[i];
+    }
+}
+
+bool operator ==(const Encoder & left, const Encoder & right)
+{
+    if (left.stroka== right.stroka)
+        return true;
+    return false;
 }
 
 vector<char> Encoder::B32bit_operations(unsigned long long int &buffer, int &bitCount) // Битовые операции в Base32
@@ -47,7 +54,7 @@ vector<char> Encoder::Base_equally(vector<char> res) //= в Base32
     return res;
 }
 
-Encoder Encoder::base32Encode(string &data)
+Encoder Encoder::base32Encode(string data)
 {
     vector <char> Encode, resbuffer;
 
@@ -75,12 +82,12 @@ Encoder Encoder::base32Encode(string &data)
         }
     }
     Encode = Base_equally(Encode); // добавляем =
-    
+
     const int dlina = Encode.size();
-    Encoder resultEncode(dlina);
+    Encoder resultEncode;
     for (auto i = 0; i < dlina; i++) {
-        resultEncode[i] = Encode.at(i);
+        resultEncode.stroka[i] = Encode.at(i);
     }
-    resultEncode[dlina] = '\0';
+    resultEncode.stroka[dlina] = '\0';
     return resultEncode;
 }

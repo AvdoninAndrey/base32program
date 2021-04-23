@@ -16,10 +16,10 @@ public:
         cout << "Добро пожаловать в программу для кодирования-декодирования Base32." << endl;
         cout << "Чтобы завершить работу программу, введите \"exit\"." << endl;
         do {
-            cout << "Укажите режим работы:";
+            cout << "Укажите режим работы: ";
             cin >> mode;
             if (mode == enc) {
-                cout << "Введите строку для кодирования:";
+                cout << "Введите строку для кодирования: ";
                 cin.get();
                 getline(cin, s);
                 Encoder b32;
@@ -28,10 +28,11 @@ public:
                 Result<Encoder>::PrintResult(b32.base32Encode(s));
             }
             if (mode == dec) {
-                cout << "Введите строку для декодирования:";
+                cout << "Введите строку для декодирования: ";
                 cin.get();
                 getline(cin, s);
-                if(ExceptionAlphabet::checking_the_alphabetB32(s)) {
+                ExceptionAlphabet check;
+                if(check.checking_the_alphabetB32(s)) {
                     Decoder b32;
                     cout << "Data for decoding: " << s << endl;
                     cout <<"Decoded string: ";
