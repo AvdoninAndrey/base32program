@@ -11,6 +11,7 @@ public:
 template <typename T>
 void Result<T>::PrintResult(T result)
 {
+    
     for (int i=0; result[i]!='\0'; i++) {
         cout << result[i];
     }

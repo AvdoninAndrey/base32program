@@ -10,7 +10,7 @@ Decoder::Decoder(const char * str)
     string result;
     int end;
     for (end = 0; str[end] != '\0'; end++); // узнаём длину
-    result.resize(end+1); // выделяем память
+    result.resize(end+3); // выделяем память
     for (int i=0; i<=end; i++) {
         result[i] = str[i];
         this->stroka[i] = result[i];
@@ -58,6 +58,7 @@ Decoder Decoder::base32Decode(string data) // Декодирование
 
     const int dlina = Decode.size();
     Decoder resultDecode;
+    resultDecode.stroka.resize(dlina+3);
     for (auto i = 0; i<dlina; i++) {
         resultDecode.stroka[i] = Decode.at(i);
     }

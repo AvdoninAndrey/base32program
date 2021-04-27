@@ -2,8 +2,7 @@
 #include "Alphabet.h"
 #include <iostream>
 #include "Exception.h"
-
-class ExceptionAlphabet : protected Alphabets, protected MyException 
+class ExceptionAlphabet : protected Alphabets, protected MyException
 {
 public:
     ExceptionAlphabet() = default;

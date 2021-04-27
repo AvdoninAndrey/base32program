@@ -16,7 +16,7 @@ Encoder::Encoder(const char * str)
     string result;
     int end;
     for (end = 0; str[end] != '\0'; end++); // узнаём длину
-    result.resize(end+1); // выделяем память
+    result.resize(end+3); // выделяем размер строки
     for (int i=0; i<=end; i++) {
         result[i] = str[i];
         this->stroka[i] = result[i];
@@ -85,6 +85,7 @@ Encoder Encoder::base32Encode(string data)
 
     const int dlina = Encode.size();
     Encoder resultEncode;
+    resultEncode.stroka.resize(dlina + 3);
     for (auto i = 0; i < dlina; i++) {
         resultEncode.stroka[i] = Encode.at(i);
     }

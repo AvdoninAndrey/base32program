@@ -2,15 +2,12 @@
 #include "Alphabet.h"
 #include <iostream>
 #include <vector>
-#include <codecvt>
-#include <locale>
 class Encoder: protected Alphabets
 {
 private:
     const int b32key = 5; // ключ Base32
     string stroka;
     vector<char> B32bit_operations(unsigned long long int &buffer, int &bitCount); // битовые операции в Base32
-
     vector<char> Base_equally (vector <char> res); // = в Base32
 
 public:

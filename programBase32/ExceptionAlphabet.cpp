@@ -23,7 +23,6 @@ void ExceptionAlphabet::Fix ()
 
 bool ExceptionAlphabet::checking_the_alphabetB32(string data)
 {
-
     try {
         if (data.find_first_not_of(base32alphabet,0) != string::npos) {
             throw ExceptionAlphabet(1, "наличие недопустимых символов.", "Используйте следующий алфавит: " + base32alphabet);

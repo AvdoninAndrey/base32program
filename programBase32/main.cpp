@@ -14,7 +14,8 @@ public:
         bool flag, isTrue = true;
         string s;
         cout << "Добро пожаловать в программу для кодирования-декодирования Base32." << endl;
-        cout << "Чтобы завершить работу программу, введите \"exit\"." << endl;
+        Help help;
+        help.printHelp();
         do {
             cout << "Укажите режим работы: ";
             cin >> mode;
@@ -50,7 +51,6 @@ public:
                 cout << "Иначе введите \"not\" , чтобы продолжить.\n";
                 cin >> NeMode;
                 if (NeMode == spravka) {
-                    Help help;
                     help.printHelp();
                 }
                 if (NeMode != contin && NeMode != spravka) {
