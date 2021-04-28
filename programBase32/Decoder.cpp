@@ -5,16 +5,12 @@ ostream & operator<<(ostream &out, const Decoder &a) // перегрузка <<
     out << a.stroka;
     return out;
 }
-Decoder::Decoder(const char * str)
+
+Decoder::Decoder(const string str)
 {
-    string result;
-    int end;
-    for (end = 0; str[end] != '\0'; end++); // узнаём длину
-    result.resize(end+3); // выделяем память
-    for (int i=0; i<=end; i++) {
-        result[i] = str[i];
-        this->stroka[i] = result[i];
-    }
+    int size_str= str.size();
+    this->stroka.resize(size_str);
+    this->stroka = str;
 }
 bool operator == (const Decoder & left, const Decoder & right)
 {
@@ -58,7 +54,7 @@ Decoder Decoder::base32Decode(string data) // Декодирование
 
     const int dlina = Decode.size();
     Decoder resultDecode;
-    resultDecode.stroka.resize(dlina+3);
+    resultDecode.stroka.resize(dlina);
     for (auto i = 0; i<dlina; i++) {
         resultDecode.stroka[i] = Decode.at(i);
     }

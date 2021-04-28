@@ -27,6 +27,15 @@ bool ExceptionAlphabet::checking_the_alphabetB32(string data)
         if (data.find_first_not_of(base32alphabet,0) != string::npos) {
             throw ExceptionAlphabet(1, "наличие недопустимых символов.", "Используйте следующий алфавит: " + base32alphabet);
         }
+
+        size_t equally = data.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
+        if (equally != string::npos) {
+            data.erase(remove(data.begin(), data.end(), '='), data.end());
+            size_t ClearTextSize = data.length();
+            if (equally != ClearTextSize) {
+                throw ExceptionAlphabet(2, "неправильное использование символа \"=\".", "Символ \"=\" можно использовать только после символом букв анлийского алфавита");
+            }
+        }
         return true;
     } catch (ExceptionAlphabet& ex) {
         ex.code();

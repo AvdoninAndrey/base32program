@@ -2,6 +2,7 @@
 #include "Alphabet.h"
 #include <iostream>
 #include "Exception.h"
+#include <algorithm>
 class ExceptionAlphabet : protected Alphabets, protected MyException
 {
 public:

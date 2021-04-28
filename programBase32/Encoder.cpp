@@ -11,16 +11,12 @@ char& Encoder::operator[] (const int index) // перегрузка []
     return stroka[index];
 }
 
-Encoder::Encoder(const char * str)
+
+Encoder::Encoder(const string str)
 {
-    string result;
-    int end;
-    for (end = 0; str[end] != '\0'; end++); // узнаём длину
-    result.resize(end+3); // выделяем размер строки
-    for (int i=0; i<=end; i++) {
-        result[i] = str[i];
-        this->stroka[i] = result[i];
-    }
+    int size_str= str.size();
+    this->stroka.resize(size_str);
+    this->stroka = str;
 }
 
 bool operator ==(const Encoder & left, const Encoder & right)
@@ -85,7 +81,7 @@ Encoder Encoder::base32Encode(string data)
 
     const int dlina = Encode.size();
     Encoder resultEncode;
-    resultEncode.stroka.resize(dlina + 3);
+    resultEncode.stroka.resize(dlina);
     for (auto i = 0; i < dlina; i++) {
         resultEncode.stroka[i] = Encode.at(i);
     }

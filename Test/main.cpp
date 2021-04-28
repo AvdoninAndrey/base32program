@@ -8,10 +8,10 @@
 SUITE(Encode)
 {
 
-    TEST(Encode_EnglishLetters) {                                                   // английские буквы
-        Encoder correct_result("IFBEGRCFIZDUQSKKJNGE2TSPKBIVEU2UKVLFOWCZLI======");
+    TEST(Encode_EnglishLetters) {                                                   // английские буквы с пробелами
+        Encoder correct_result("IFBEGRCFEBDEOSBAJFFEWTCNJZHVAUKSKNKFKVSXEBMFSIC2");
         Encoder test;
-        CHECK_EQUAL(correct_result,test.base32Encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        CHECK_EQUAL(correct_result,test.base32Encode("ABCDE FGH IJKLMNOPQRSTUVW XY Z"));
     }
 
     TEST(Encode_RussianLetters) {                                       // русские буквы
@@ -21,9 +21,9 @@ SUITE(Encode)
     }
 
     TEST(Encode_SpecialCharacters) {                                                // спец. символы
-        Encoder correct_result("IARSIJK6HITD6XBKFBPS2PJLPN6VWXL4LRQH4PR4HMXQ====");
+        Encoder correct_result("IARSIJK6HITD6KRIL4WT2K33PVNV27DAPY7DYOZP");
         Encoder test;
-        CHECK_EQUAL(correct_result,test.base32Encode("@#$%^:&?\*(_-=+{}[]|\`~><;/"));
+        CHECK_EQUAL(correct_result,test.base32Encode("@#$%^:&?*(_-=+{}[]|`~><;/"));
     }
 
     TEST(Encode_Numbers) {                                             
@@ -47,16 +47,6 @@ SUITE(Encode)
         Encoder test;
         CHECK_EQUAL(correct_result,test.base32Encode("     "));
     }
-    TEST(Encode_Long_String) {                                                    //длинная строка из основных символов таблицы ASCII
-        string TestStr;
-        for (auto i = 35; i<=126; i++ ) {
-            TestStr[i] = char(i);
-        }
-        Encoder correct_result = "EMSCKJRHFAUSUKZMFUXC6MBRGIZTINJWG44DSOR3HQ6T4P2AIFBEGRCFIZDUQSKKJNGE2TSPKBI"
-                                 "VEU2UKVLFOWCZLJNVYXK6L5QGCYTDMRSWMZ3INFVGW3DNNZXXA4LSON2HK5TXPB4XU634PV7A====";
-        Encoder test;
-        CHECK_EQUAL(correct_result,test.base32Encode(TestStr));
-    }
 
 }
 
@@ -64,21 +54,21 @@ SUITE(Decode)
 {
 
     TEST(Decode_EnglishLetters) {
-        Decoder correct_result("ABCDEFGHIJKLMNOPQRSTUVWXYZ");           // английские буквы
+        Decoder correct_result("ABCDE FGH IJKLMNOPQRSTUVW XY Z");           // английские буквы с пробелами
         Decoder test;
-        CHECK_EQUAL(correct_result,test.base32Decode("IFBEGRCFIZDUQSKKJNGE2TSPKBIVEU2UKVLFOWCZLI======"));
+        CHECK_EQUAL(correct_result,test.base32Decode("IFBEGRCFEBDEOSBAJFFEWTCNJZHVAUKSKNKFKVSXEBMFSIC2"));
     }
 
     TEST(Decode_RussianLetters) {
-        Decoder correct_result("русские буквы");                // русские буквы
+        Decoder correct_result("русские буквы");                // русские буквы (слова)
         Decoder test;
         CHECK_EQUAL(correct_result,test.base32Decode("2GANDA6RQHIYDUF22C4NBNJA2CY5DA6QXLILFUML"));
     }
 
     TEST(Decode_SpecialCharacters) {
-        Decoder correct_result("@#$%^:&?\*(_-=+{}[]|\`~><;/");          // спец. символы
+        Decoder correct_result("@#$%^:&?*(_-=+{}[]|`~><;/");          // спец. символы
         Decoder test;
-        CHECK_EQUAL(correct_result,test.base32Decode("IARSIJK6HITD6XBKFBPS2PJLPN6VWXL4LRQH4PR4HMXQ===="));
+        CHECK_EQUAL(correct_result,test.base32Decode("IARSIJK6HITD6KRIL4WT2K33PVNV27DAPY7DYOZP"));
     }
 
     TEST(Decode_Numbers) {
@@ -87,9 +77,9 @@ SUITE(Decode)
         CHECK_EQUAL(correct_result,test.base32Decode("GAYTEMZUGU3DOOBZ"));
     }
     TEST(Decode_AllCharacters) {
-        Decoder correct_result("Hello привет 12345 *()!_=");    // смесь всех символом
+        Decoder correct_result("URA я пишу тесты 123 ?)(!");    // смесь всех символом
         Decoder test;
-        CHECK_EQUAL(correct_result,test.base32Decode("JBSWY3DPEDIL7UMA2C4NBMWQWXIYEIBRGIZTINJAFIUCSIK7HU======"));
+        CHECK_EQUAL(correct_result,test.base32Decode("KVJECIGRR4QNBP6QXDIYRUMDEDIYFUFV2GA5DAWRRMQDCMRTEA7SSKBB"));
     }
     // Нетипичные ситуации:
     TEST(Decode_EmptyString) {                                                    
@@ -102,20 +92,10 @@ SUITE(Decode)
         Decoder test;
         CHECK_EQUAL(correct_result,test.base32Decode("EAQCAIBA"));
     }
-    TEST(Decode_LongString) {                                                    //длинная строка из основных символы таблицы ASCII
-        Decoder correct_result;
-        for (auto i = 35; i<=126; i++ ) {
-            correct_result[i] = char(i);
-        }
-        string TestStr = "EMSCKJRHFAUSUKZMFUXC6MBRGIZTINJWG44DSOR3HQ6T4P2AIFBEGRCFIZDUQSKKJNGE2TSPKBI"
-                         "VEU2UKVLFOWCZLJNVYXK6L5QGCYTDMRSWMZ3INFVGW3DNNZXXA4LSON2HK5TXPB4XU634PV7A====";
-        Decoder test;
-        CHECK_EQUAL(correct_result,test.base32Decode(TestStr));
-    }
 
 }
 
-SUITE(ExceptionAlphabet)
+SUITE(ExceptionAlphabets)
 {
     TEST(ExceptionAlphabet_one) {
         ExceptionAlphabet test;
@@ -142,6 +122,14 @@ SUITE(ExceptionAlphabet)
     TEST(ExceptionAlphabet_six) {
         ExceptionAlphabet test;
         CHECK_EQUAL(false, test.checking_the_alphabetB32("АBCDEFGHIJKLMNOPQ RSTUVWXYZ234567=")); // недопустимый символ(пробел)
+    }
+    TEST(ExceptionAlphabet_seven) {
+        ExceptionAlphabet test;
+        CHECK_EQUAL(false, test.checking_the_alphabetB32("=ABCDEFGHIJKLMNOP")); // символ "=" в начале строки
+    }
+    TEST(ExceptionAlphabet_eight) {
+        ExceptionAlphabet test;
+        CHECK_EQUAL(false, test.checking_the_alphabetB32("ABCDEFGHI=JKLMNOP")); // символ "=" в середине строки
     }
 
 }
