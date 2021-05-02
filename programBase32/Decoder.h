@@ -1,6 +1,11 @@
+/**
+* @file Decoder.h
+* @author Авдонин А.Д.
+* @version 1.0
+* @copyright ИБСТ ПГУ
+*/
 #pragma once
 #include "Alphabet.h"
-#include <iostream>
 #include <vector>
 #include <algorithm>
 class Decoder: protected Alphabets

@@ -11,7 +11,6 @@ char& Encoder::operator[] (const int index) // перегрузка []
     return stroka[index];
 }
 
-
 Encoder::Encoder(const string str)
 {
     int size_str= str.size();
@@ -33,7 +32,6 @@ vector<char> Encoder::B32bit_operations(unsigned long long int &buffer, int &bit
         auto index = bitCount >= b32key ?
                      static_cast<int>(buffer >> (bitCount - b32key)) & 0x1f : // "отщипываем по 5 бит"
                      static_cast<int>(buffer & static_cast<unsigned long long>(0x1f >> (b32key - bitCount))) << (b32key - bitCount);
-
         Encode.push_back(base32alphabet[index]); // переводим числа в символы алфавита, используя их, как индекс "массива"
         bitCount -= b32key;
     }
