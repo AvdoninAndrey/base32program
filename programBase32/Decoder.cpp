@@ -37,16 +37,16 @@ Decoder Decoder::base32Decode(string data) // Декодирование
 
     for (int bitIndex = 0; bitIndex < dataDlina * b32key; bitIndex += 8) {
 
-        int dualbyte = (int)base32alphabet.find(bytes[bitIndex / b32key]) << 10; // ищем индекс символа в алфавите (ищем по 3)
+        int dualbyte = (int)base32alphabet.find(bytes[bitIndex / b32key]) << 10; // находим код символа в таблице 
 
         if (bitIndex / b32key + 1 < dVector) {
-            dualbyte |= (int)base32alphabet.find(bytes[bitIndex / b32key + 1]) << b32key;
+            dualbyte |= (int)base32alphabet.find(bytes[bitIndex / b32key + 1]) << 5;
         }
         if (bitIndex / b32key + 2 < dVector) {
             dualbyte |= (int)base32alphabet.find(bytes[bitIndex / b32key + 2]);
         }
 
-        dualbyte = 0xff & (dualbyte >> (15 - bitIndex % b32key - 8)); // находим индекс числа в таблице "ASCII"
+        dualbyte = 0xff & (dualbyte >> (15 - bitIndex % b32key - 8)); // находим индекс числа в таблице 
 
         Decode.push_back(static_cast<unsigned char>(dualbyte)); //переводим число в символ
 

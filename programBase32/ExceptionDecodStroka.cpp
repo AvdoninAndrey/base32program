@@ -27,7 +27,7 @@ bool ExceptionDecodeStroka::checking_the_alphabetB32(string data)
         throw ExceptionDecodeStroka(1, "наличие недопустимых символов.", "Используйте следующий алфавит: " + base32alphabet);
     }
 
-    size_t equally = data.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
+    size_t equally = data.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567",0);
     if (equally != string::npos) {
         data.erase(remove(data.begin(), data.end(), '='), data.end());
         size_t ClearTextSize = data.length();
