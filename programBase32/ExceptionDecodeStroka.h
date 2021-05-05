@@ -38,5 +38,5 @@ public:
      * @return значение "true", если проверки завершились успешно.
      * @throw  ExceptionDecodeStroka, если в строке есть символы, не принадлежащие алфавиту Base32 и при неправильном использовании символа "=".
      */
-    bool checking_the_alphabetB32(string data);
+    bool checking_the_Decod_str(string data);
 };

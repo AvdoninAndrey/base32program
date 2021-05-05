@@ -64,7 +64,7 @@ public:
      *  @endcode
      * <p>После этого находится код символа в таблице "Utf-8", так как программа использует именно эту кодировку. <br>
      *  @code
-        dualbyte = 0xff & (dualbyte >> (15 - bitIndex % b32key - 8)); // находим индекс числа в таблице 
+        dualbyte = 0xff & (dualbyte >> (15 - bitIndex % b32key - 8)); // находим код символа в таблице 
      *  @endcode
      * Затем код символа переводится в символ и записывается vector<unsigned char> с именем "Decode".</p> <br>
      *  @code

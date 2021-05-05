@@ -24,7 +24,7 @@ void Menu::Select()
             getline(cin, s);
             ExceptionDecodeStroka check;
             try {
-                check.checking_the_alphabetB32(s);
+                check.checking_the_Decod_str(s);
                 Decoder b32;
                 cout << "Data for decoding: " << s << endl;
                 cout <<"Decoded string: ";

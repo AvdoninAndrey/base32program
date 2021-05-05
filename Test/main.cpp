@@ -99,37 +99,37 @@ SUITE(ExceptionDecodeStrokaTest)
 {
     TEST(ExceptionDecodeStroka_one) {
         ExceptionDecodeStroka test;
-        CHECK_THROW(test.checking_the_alphabetB32("АBCDEFGHIJKLMNOPQRSTUVWXYZ234567=ъ"),ExceptionDecodeStroka); // недопустимый символ в конце строки
+        CHECK_THROW(test.checking_the_Decod_str("АBCDEFGHIJKLMNOPQRSTUVWXYZ234567=ъ"),ExceptionDecodeStroka); // недопустимый символ в конце строки
     }
 
     TEST(ExceptionDecodeStroka_two) {
         ExceptionDecodeStroka test;
-        CHECK_EQUAL(true, test.checking_the_alphabetB32("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567=")); // все возможные символы алфавита
+        CHECK_EQUAL(true, test.checking_the_Decod_str("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567=")); // все возможные символы алфавита
     }
     TEST(ExceptionDecodeStroka_three) {
          ExceptionDecodeStroka test;
-         CHECK_THROW(test.checking_the_alphabetB32("АBCDEFGHIJKLMNOPdQRSTUVWXYZ234567="),ExceptionDecodeStroka); // недопустимый символ в серидине строки
+         CHECK_THROW(test.checking_the_Decod_str("АBCDEFGHIJKLMNOPdQRSTUVWXYZ234567="),ExceptionDecodeStroka); // недопустимый символ в серидине строки
     }
 
     TEST(ExceptionDecodeStroka_four) {
         ExceptionDecodeStroka test;
-         CHECK_THROW(test.checking_the_alphabetB32("фАBCDEFGHIJKLMNOPQRSTUVWXYZ234567="),ExceptionDecodeStroka); // недопустимый символ в начале строки
+         CHECK_THROW(test.checking_the_Decod_str("фАBCDEFGHIJKLMNOPQRSTUVWXYZ234567="),ExceptionDecodeStroka); // недопустимый символ в начале строки
     }
     TEST(ExceptionDecodeStroka_five) {
          ExceptionDecodeStroka test;
-         CHECK_THROW(test.checking_the_alphabetB32("фАBCDEFGHIJKLMNOPQфRSTUVWXYZ234567=ф"),ExceptionDecodeStroka); // недопустимый символ во всех местах строки
+         CHECK_THROW(test.checking_the_Decod_str("фАBCDEFGHIJKLMNOPQфRSTUVWXYZ234567=ф"),ExceptionDecodeStroka); // недопустимый символ во всех местах строки
     }
     TEST(ExceptionDecodeStroka_six) {
          ExceptionDecodeStroka test;
-         CHECK_THROW(test.checking_the_alphabetB32("АBCDEFGHIJKLMNOPQ RSTUVWXYZ234567="),ExceptionDecodeStroka); // недопустимый символ(пробел)
+         CHECK_THROW(test.checking_the_Decod_str("АBCDEFGHIJKLMNOPQ RSTUVWXYZ234567="),ExceptionDecodeStroka); // недопустимый символ(пробел)
     }
     TEST(ExceptionDecodeStroka_seven) {
          ExceptionDecodeStroka test;
-         CHECK_THROW(test.checking_the_alphabetB32("=ABCDEFGHIJKLMNOP"),ExceptionDecodeStroka); // символ "=" в начале строки
+         CHECK_THROW(test.checking_the_Decod_str("=ABCDEFGHIJKLMNOP"),ExceptionDecodeStroka); // символ "=" в начале строки
     }
     TEST(ExceptionDecodeStroka_eight) {
          ExceptionDecodeStroka test;
-         CHECK_THROW( test.checking_the_alphabetB32("ABCDEFGHI=JKLMNOP"),ExceptionDecodeStroka); // символ "=" в середине строки
+         CHECK_THROW( test.checking_the_Decod_str("ABCDEFGHI=JKLMNOP"),ExceptionDecodeStroka); // символ "=" в середине строки
     }
 
 }
