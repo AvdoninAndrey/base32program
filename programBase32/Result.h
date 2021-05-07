@@ -3,7 +3,7 @@
 * @author Авдонин А.Д.
 * @version 1.0
 * @brief Описание шаблонного класса Result<T> и его реализация
-* @data 03.05.2021
+* @date 03.05.2021
 * @copyright ИБСТ ПГУ
 */
 #pragma once
